@@ -27,7 +27,7 @@ export default class MyUtils {
         }
         treeData.map(node => {
             operation(node, parent);
-            node && node.children && node.children.length > 0 && MyUtils.traverseTree(node.children, operation, node);
+            node && node.nodes && node.nodes.length > 0 && MyUtils.traverseTree(node.nodes, operation, node);
         })
     }
 
@@ -42,7 +42,7 @@ export default class MyUtils {
         if (parentNode) {
             let siblingNum = 0;
             let siblingAllSelectedNum = 0;
-            parentNode.children.map(item => {
+            parentNode.nodes.map(item => {
                 if (selected[item.key] === true) { 
                     siblingNum++;
                     siblingAllSelectedNum++;
@@ -56,7 +56,7 @@ export default class MyUtils {
                 selected[parentNode.key] = false;
                 selectedKeys = selectedKeys.filter(key => key !== parentNode.key);
                 selectedNodes = selectedNodes.filter(item => item.key !== parentNode.key);
-            } else if (siblingAllSelectedNum === parentNode.children.length) {
+            } else if (siblingAllSelectedNum === parentNode.nodes.length) {
                 selected[parentNode.key] = true;
                 selectedKeys.push(parentNode.key);
                 selectedNodes.push(parentNode);
